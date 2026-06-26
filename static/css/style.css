@@ -1,0 +1,368 @@
+/* ─── Design tokens ──────────────────────────────────────────── */
+:root {
+  --ink: #0f0f0f;
+  --paper: #f9f7f4;
+  --cream: #f0ede7;
+  --blush: #e8cfc4;
+  --rose: #c4614a;
+  --rose-dk: #a34d3b;
+  --mid: #7a6e68;
+  --light: #cdc6be;
+  --white: #ffffff;
+  --font-disp: "Georgia", "Times New Roman", serif;
+  --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --radius: 4px;
+  --trans: 0.2s ease;
+}
+
+/* ─── Reset ──────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ─── Header ─────────────────────────────────────────────────── */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  border-bottom: 1px solid var(--light);
+  background: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.wordmark {
+  font-family: var(--font-disp);
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  text-decoration: none;
+}
+.wordmark span {
+  color: var(--rose);
+}
+.badge {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mid);
+}
+
+/* ─── Main layout ────────────────────────────────────────────── */
+main {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 56px 40px 80px;
+}
+
+/* ─── Hero ───────────────────────────────────────────────────── */
+.hero {
+  margin-bottom: 52px;
+}
+.hero-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-bottom: 12px;
+}
+.hero h1 {
+  font-family: var(--font-disp);
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: normal;
+  line-height: 1.15;
+  color: var(--ink);
+  max-width: 600px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--rose);
+}
+.hero-sub {
+  margin-top: 16px;
+  color: var(--mid);
+  max-width: 480px;
+  font-size: 15px;
+}
+
+/* ─── Upload grid ────────────────────────────────────────────── */
+.upload-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+@media (max-width: 620px) {
+  .upload-grid {
+    grid-template-columns: 1fr;
+  }
+  main {
+    padding: 36px 20px 60px;
+  }
+  header {
+    padding: 16px 20px;
+  }
+}
+
+.upload-card {
+  background: var(--white);
+  border: 1.5px dashed var(--light);
+  border-radius: var(--radius);
+  padding: 28px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color var(--trans), background var(--trans);
+  position: relative;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.upload-card:hover,
+.upload-card.dragover {
+  border-color: var(--rose);
+  background: #fdf6f4;
+}
+.upload-card.has-file {
+  border-style: solid;
+  border-color: var(--rose);
+}
+.upload-card input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+.upload-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+.upload-icon svg {
+  color: var(--rose);
+}
+.upload-label {
+  font-family: var(--font-disp);
+  font-size: 17px;
+  color: var(--ink);
+}
+.upload-hint {
+  font-size: 12px;
+  color: var(--mid);
+}
+.upload-preview {
+  width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+  border-radius: var(--radius);
+  display: none;
+}
+.upload-card.has-file .upload-preview {
+  display: block;
+}
+.upload-card.has-file .upload-icon,
+.upload-card.has-file .upload-label,
+.upload-card.has-file .upload-hint {
+  display: none;
+}
+.upload-card.has-file .change-hint {
+  display: block;
+  font-size: 11px;
+  color: var(--mid);
+  margin-top: 6px;
+}
+.change-hint {
+  display: none;
+}
+
+/* ─── Controls row ───────────────────────────────────────────── */
+.controls-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.field label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mid);
+}
+.field select {
+  background: var(--white);
+  border: 1.5px solid var(--light);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--ink);
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a6e68' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+  transition: border-color var(--trans);
+}
+.field select:focus {
+  outline: none;
+  border-color: var(--rose);
+}
+
+/* ─── CTA button ─────────────────────────────────────────────── */
+.btn-try {
+  background: var(--rose);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius);
+  padding: 12px 36px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background var(--trans), transform 0.1s;
+  white-space: nowrap;
+}
+.btn-try:hover {
+  background: var(--rose-dk);
+}
+.btn-try:active {
+  transform: scale(0.98);
+}
+.btn-try:disabled {
+  background: var(--light);
+  cursor: not-allowed;
+}
+
+/* ─── Status / result area ───────────────────────────────────── */
+#status-area {
+  margin-top: 40px;
+}
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--mid);
+  padding: 8px 16px;
+  background: var(--cream);
+  border-radius: 99px;
+}
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--light);
+  border-top-color: var(--rose);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.result-wrap {
+  margin-top: 32px;
+  animation: fadeUp 0.4s ease;
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.result-label {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-bottom: 12px;
+}
+.result-img {
+  max-width: 420px;
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  display: block;
+}
+.result-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+.btn-outline {
+  border: 1.5px solid var(--rose);
+  color: var(--rose);
+  background: transparent;
+  border-radius: var(--radius);
+  padding: 9px 22px;
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background var(--trans);
+  display: inline-block;
+}
+.btn-outline:hover {
+  background: #fdf0ed;
+}
+
+.error-box {
+  background: #fdf0ed;
+  border: 1px solid var(--blush);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  font-size: 14px;
+  color: var(--rose-dk);
+  margin-top: 20px;
+}
+
+/* ─── Footer note ────────────────────────────────────────────── */
+.footnote {
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid var(--light);
+  font-size: 12px;
+  color: var(--mid);
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.footnote strong {
+  color: var(--ink);
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyDressr — Virtual Try-On</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <script src="{% static 'js/index.js' %}" defer></script>
+  </head>
+  <body>
+    <header>
+      <a class="wordmark" href="/">My<span>Dressr</span></a>
+      <span class="badge">Demo · Virtual Try-On</span>
+    </header>
+
+    <main>
+      <div class="hero">
+        <p class="hero-eyebrow">AI-Powered Styling</p>
+        <h1>See yourself in any outfit, <em>instantly.</em></h1>
+        <p class="hero-sub">
+          Upload your photo and a garment image — our model composites them in
+          seconds using open-source AI.
+        </p>
+      </div>
+
+      <form id="tryon-form">
+        {% csrf_token %}
+        <div class="upload-grid">
+          <!-- Avatar upload -->
+          <div class="upload-card" id="avatar-card">
+            <input
+              type="file"
+              id="avatar-input"
+              name="avatar"
+              accept="image/*"
+              required
+            />
+            <div class="upload-icon">
+              <svg
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                viewBox="0 0 24 24"
+              >
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+              </svg>
+            </div>
+            <p class="upload-label">Your photo</p>
+            <p class="upload-hint">
+              Front-facing, full or half body<br />JPG or PNG, up to 10MB
+            </p>
+            <img
+              class="upload-preview"
+              id="avatar-preview"
+              src=""
+              alt="Avatar preview"
+            />
+            <span class="change-hint">Click to change</span>
+          </div>
+
+          <!-- Garment upload -->
+          <div class="upload-card" id="garment-card">
+            <input
+              type="file"
+              id="garment-input"
+              name="garment"
+              accept="image/*"
+              required
+            />
+            <div class="upload-icon">
+              <svg
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                viewBox="0 0 24 24"
+              >
+                <path d="M3 6l3-3 6 3 6-3 3 3v4l-3 1v9H6V11L3 10V6z" />
+              </svg>
+            </div>
+            <p class="upload-label">Garment image</p>
+            <p class="upload-hint">
+              Flat lay or on-model product photo<br />JPG or PNG, up to 10MB
+            </p>
+            <img
+              class="upload-preview"
+              id="garment-preview"
+              src=""
+              alt="Garment preview"
+            />
+            <span class="change-hint">Click to change</span>
+          </div>
+        </div>
+
+        <div class="controls-row">
+          <div class="field">
+            <label for="category">Garment type</label>
+            <select id="category" name="category">
+              <option value="upper">Upper body</option>
+              <option value="lower">Lower body</option>
+              <option value="overall">Dress / full outfit</option>
+            </select>
+          </div>
+          <button class="btn-try" type="submit" id="submit-btn">
+            Try it on →
+          </button>
+        </div>
+      </form>
+
+      <div id="status-area" style="display: none"></div>
+
+      <div class="footnote">
+        <svg
+          width="14"
+          height="14"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          viewBox="0 0 24 24"
+          style="flex-shrink: 0; margin-top: 2px"
+        >
+          <circle cx="12" cy="12" r="10" />
+          <path d="M12 8v4m0 4h.01" />
+        </svg>
+        <span
+          ><strong>How this works:</strong> Images are sent to a free public
+          HuggingFace Space running CatVTON or IDM-VTON. Processing takes 30-90
+          seconds depending on queue. No images are stored after your
+          session.</span
+        >
+      </div>
+    </main>
+  </body>
+</html>

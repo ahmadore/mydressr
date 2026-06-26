@@ -1,0 +1,4 @@
+django>=4.2
+pillow>=10.0
+requests>=2.31
+gradio_client>=0.8.0
