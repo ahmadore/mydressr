@@ -19,4 +19,11 @@ COPY . .
 EXPOSE 7860
 
 # Run migrations and start Gunicorn on port 7860
-CMD python manage.py migrate && mydressr_project.wsgi:application --bind 0.0.0.0:7860
+CMD python manage.py migrate --run-syncdb && \
+    gunicorn mydressr_project.wsgi:application \
+    --bind 0.0.0.0:$PORT \
+    --workers 2 \
+    --threads 4 \
+    --timeout 120 \
+    --access-logfile - \
+    --error-logfile -
