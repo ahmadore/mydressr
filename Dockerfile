@@ -42,6 +42,10 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 EXPOSE 8000
 
+RUN mkdir -p media/uploads media/results \
+ && chown -R django:django media \
+ && chown django:django /app
+
 USER django
 
 CMD python manage.py migrate --run-syncdb && \
