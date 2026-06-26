@@ -1,7 +1,7 @@
 ---
 title: MyDressr Virtual Try-On
 emoji: 👗
-colorFrom: rose
+colorFrom: indigo
 colorTo: pink
 sdk: docker
 pinned: false
