@@ -3,3 +3,4 @@ pillow>=10.0
 requests>=2.31
 gradio_client>=0.8.0
 gunicorn>=21.2
+whitenoise>=6.6

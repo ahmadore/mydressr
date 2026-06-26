@@ -42,6 +42,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 EXPOSE 8000
 
+RUN addgroup --system django && adduser --system --ingroup django --home /app django
+
 RUN mkdir -p media/uploads media/results \
  && chown -R django:django media \
  && chown django:django /app
