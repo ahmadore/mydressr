@@ -22,10 +22,10 @@ Open http://127.0.0.1:8000
 
 ## Models
 
-| Choice        | Space                        | Notes                          |
-|---------------|------------------------------|--------------------------------|
-| CatVTON       | zhengchong/CatVTON           | Faster, lightweight (default)  |
-| IDM-VTON      | yisol/IDM-VTON               | Higher quality, slower         |
+| Choice   | Space              | Notes                         |
+| -------- | ------------------ | ----------------------------- |
+| CatVTON  | zhengchong/CatVTON | Faster, lightweight (default) |
+| IDM-VTON | yisol/IDM-VTON     | Higher quality, slower        |
 
 ## Notes
 
@@ -35,3 +35,15 @@ Open http://127.0.0.1:8000
   and use a paid HF Inference Endpoint or Replicate for guaranteed uptime.
 - Media files are stored in `media/` and not cleaned up automatically in
   this demo. Add a cleanup task for production.
+
+---
+
+title: MyDressr Virtual Try-On
+emoji: 👗
+colorFrom: rose
+colorTo: pink
+sdk: docker
+pinned: false
+app_port: 8000
+
+---
