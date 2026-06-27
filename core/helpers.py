@@ -3,7 +3,16 @@ import traceback
 from pathlib import Path
 from django.conf import settings
 from django.core.files.storage import default_storage
+from gradio_client import Client, handle_file
 
+from dotenv import load_dotenv
+
+# Load variables from the .env file
+load_dotenv()
+
+
+HF_TOKEN = os.getenv("HF_TOKEN") 
+CLIENT = Client("yisol/IDM-VTON", token=HF_TOKEN)
 
 def _run_inference(job_id, avatar_path, garment_path, category, _jobs):
     """Background worker: calls HuggingFace Space via gradio_client."""
@@ -63,10 +72,9 @@ def _call_idmvton(avatar_path, garment_path, category):
     Call IDM-VTON HuggingFace Space.
     Space: https://huggingface.co/spaces/yisol/IDM-VTON
     """
-    from gradio_client import Client, handle_file
+    global CLIENT
 
-    client = Client("yisol/IDM-VTON")
-    result = client.predict(
+    result = CLIENT.predict(
         dict={"background": handle_file(avatar_path), "layers": [], "composite": None},
         garm_img=handle_file(garment_path),
         garment_des=_category_to_description(category),
