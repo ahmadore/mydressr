@@ -61,7 +61,7 @@ IDMVTON_SPACE = "yisol/IDM-VTON"
 X_FRAME_OPTIONS = "ALLOW-FROM https://huggingface.co/"
 
 # Ensure your allowed hosts can handle Hugging Face domains
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".hf.space", "huggingface.co"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".hf.space", "huggingface.co", "proxy.spaces.internal.huggingface.tech"]
 
 # Optional: CSRF trusted origins for form submissions
 CSRF_TRUSTED_ORIGINS = ["https://*.hf.space"]

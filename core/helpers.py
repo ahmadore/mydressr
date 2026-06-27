@@ -5,21 +5,23 @@ from django.conf import settings
 from django.core.files.storage import default_storage
 from gradio_client import Client, handle_file
 
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-# Load variables from the .env file
-load_dotenv()
+# # Load variables from the .env file
+# load_dotenv()
 
 
-HF_TOKEN = os.getenv("HF_TOKEN") 
+# HF_TOKEN = os.getenv("HF_TOKEN") 
 
 # This completely bypasses the public IP rate limiting blocks.
-try:
-    print("Connecting to private instance of IDM-VTON...")
-    CLIENT = Client.duplicate("yisol/IDM-VTON", token=HF_TOKEN)
-except Exception as e:
-    print(f"Fallback to direct initialization due to: {e}")
-    CLIENT = Client("yisol/IDM-VTON", token=HF_TOKEN)
+# try:
+#     print("Connecting to private instance of IDM-VTON...")
+#     CLIENT = Client.duplicate("yisol/IDM-VTON", token=HF_TOKEN, hardware="cpu-basic")
+# except Exception as e:
+#     print(f"Fallback to direct initialization due to: {e}")
+#     CLIENT = Client("yisol/IDM-VTON", token=HF_TOKEN)
+
+CLIENT = Client("yisol/IDM-VTON")
 
 
 def _run_inference(job_id, avatar_path, garment_path, category, _jobs):
