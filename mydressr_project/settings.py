@@ -58,10 +58,10 @@ CATVTON_SPACE = "zhengchong/CatVTON"
 IDMVTON_SPACE = "yisol/IDM-VTON"
 
 # Allow the Hugging Face frame embedding
-X_FRAME_OPTIONS = "ALLOW-FROM https://huggingface.co/"
+X_FRAME_OPTIONS = "ALLOW-FROM https://onrender.com/"
 
 # Ensure your allowed hosts can handle Hugging Face domains
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".hf.space", "huggingface.co", "proxy.spaces.internal.huggingface.tech"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".hf.space", "huggingface.co", "proxy.spaces.internal.huggingface.tech", 'mydressr.onrender.com']
 
 # Optional: CSRF trusted origins for form submissions
 CSRF_TRUSTED_ORIGINS = ["https://*.hf.space"]
