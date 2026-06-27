@@ -12,7 +12,15 @@ load_dotenv()
 
 
 HF_TOKEN = os.getenv("HF_TOKEN") 
-CLIENT = Client("yisol/IDM-VTON", token=HF_TOKEN)
+
+# This completely bypasses the public IP rate limiting blocks.
+try:
+    print("Connecting to private instance of IDM-VTON...")
+    CLIENT = Client.duplicate("yisol/IDM-VTON", token=HF_TOKEN)
+except Exception as e:
+    print(f"Fallback to direct initialization due to: {e}")
+    CLIENT = Client("yisol/IDM-VTON", token=HF_TOKEN)
+
 
 def _run_inference(job_id, avatar_path, garment_path, category, _jobs):
     """Background worker: calls HuggingFace Space via gradio_client."""
